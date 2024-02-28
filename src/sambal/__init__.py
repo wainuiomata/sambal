@@ -2,7 +2,6 @@ from pyramid.config import Configurator
 
 from .client import get_samdb
 
-
 with Configurator() as config:
     config.include("pyramid_jinja2")
     config.include("sambal.routes")

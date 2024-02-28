@@ -1,7 +1,7 @@
 from typing import Optional
 
-from samba.credentials import Credentials
 from samba.auth import system_session
+from samba.credentials import Credentials
 from samba.param import LoadParm
 from samba.samdb import SamDB
 
