@@ -24,7 +24,7 @@ classifiers = [
 ]
 dependencies = [
   "pyramid==2.0.2",
-  "pyramid-jinja2==2.10.1",
+  "pyramid_jinja2==2.10.1",
   "waitress==3.0.0",
 ]
 
