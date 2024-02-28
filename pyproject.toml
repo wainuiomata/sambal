@@ -1,0 +1,52 @@
+[build-system]
+requires = [
+  "setuptools>=61.2",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sambal"
+version = "0.0.1"
+authors = [
+  { name = "Rob van der Linde", email = "robvdl@gmail.com" },
+]
+description = "Web admin for Samba using Pyramid"
+readme = "README.md"
+keywords = [ "pyramid", "samba" ]
+requires-python = ">=3.8"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Framework :: Pyramid",
+  "Topic :: Internet :: WWW/HTTP",
+  "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+  "Topic :: Networking",
+]
+dependencies = [
+  "pyramid==2.0.2",
+  "pyramid-jinja2==2.10.1",
+  "waitress==3.0.0",
+]
+
+[project.license]
+text = "GPL-3.0-only"
+
+[tool.setuptools]
+include-package-data = true
+license-files = [
+  "LICENSE.txt",
+]
+
+[tool.setuptools.package-data]
+"sambal" = [
+  "*.txt",
+  "*.ini",
+  "*.cfg",
+  "*.rst",
+  "*.md",
+  "static/**",
+  "templates/**",
+]
+
+[tool.distutils.bdist_wheel]
+universal = true
