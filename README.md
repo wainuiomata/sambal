@@ -32,6 +32,7 @@ meant to be used for development only.
 
 Then also install gunicorn and run:
 
+    pip install gunicorn
     gunicorn sambal:app -w 4
 
 Why Pyramid
@@ -51,5 +52,5 @@ that doesn't sound like the wisest choice.
 License
 -------
 
-Sambal is released under [GPL v3](LICENSE.txt) which is the same license that
-Samba uses.
+Sambal is released under the [GPL v3](LICENSE.txt) license which is the
+same license that Samba uses.
