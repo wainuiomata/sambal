@@ -15,6 +15,19 @@ files inside it, it's crude but works.
     cp -R samba/bin/python/* venv/site-packages/
     venv/bin/pip install -e .
 
+Starting Sambal
+---------------
+
+To start a development server just run:
+
+    python3 -m sambal
+
+To start a production server just install gunicorn into the virtualenv and run:
+
+    gunicorn sambal:app -w 4
+
+The web interface can be accessed at http://localhost:8000
+
 Why Pyramid
 -----------
 
