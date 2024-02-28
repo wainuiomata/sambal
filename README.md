@@ -51,4 +51,5 @@ that doesn't sound like the wisest choice.
 License
 -------
 
-Sambal is released under GPL v3 which this the same license Samba uses.
+Sambal is released under [GPL v3](LICENSE.txt) which is the same license that
+Samba uses.
