@@ -28,3 +28,8 @@ URL parts to a DN seems to make sense.
 We have therefore chosen to use Pyramid over Flask for this particular
 project. As for "why not FastAPI" well Samba isn't exactly async so
 that doesn't sound like the wisest choice.
+
+License
+-------
+
+Sambal is released under GPL v3 as this the same license Samba uses.
