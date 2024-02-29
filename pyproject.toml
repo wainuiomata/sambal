@@ -25,6 +25,8 @@ classifiers = [
 dependencies = [
   "pyramid==2.0.2",
   "pyramid_jinja2==2.10.1",
+  "pyramid_session_redis==1.6.3",
+  "redis==5.0.2",
   "waitress==3.0.0",
 ]
 
