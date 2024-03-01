@@ -1,7 +1,8 @@
 Sambal
 ------
 
-Sambal is an experimental web interface for Samba using Pyramid.
+Sambal is an experimental web interface for Samba and Active Directory
+domains using Pyramid.
 
 At this point it is more just a proof of concept.
 
