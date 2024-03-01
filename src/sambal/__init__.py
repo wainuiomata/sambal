@@ -1,7 +1,7 @@
 from pyramid.config import Configurator
 
-from .auth import get_authenticated_user
 from .client import get_samdb
+from .security import get_authenticated_user
 from .settings import SETTINGS
 
 with Configurator(settings=SETTINGS) as config:
