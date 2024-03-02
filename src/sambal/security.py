@@ -54,10 +54,16 @@ def login(request, username, password, host, realm):
 
 def logout(request):
     """Log the user out and delete credentials from the session."""
-    del request.session["samba.username"]
-    del request.session["samba.password"]
-    del request.session["samba.host"]
-    del request.session["samba.realm"]
+    # Delete session keys but always expect some could be missing.
+    if "samba.username" in request.session:
+        del request.session["samba.username"]
+    if "samba.password" in request.session:
+        del request.session["samba.password"]
+    if "samba.host" in request.session:
+        del request.session["samba.host"]
+    if "samba.realm" in request.session:
+        del request.session["samba.realm"]
+
     return forget(request)
 
 
