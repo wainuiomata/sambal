@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+</head>
+
+<body>
+  <h1>Login</h1>
+  <form action="{{ request.route_path('login') }}" method="POST">
+    <div>  
+      {{ form.username.label }} {{ form.username() }}
+      {% if form.username.errors %}
+        {% for error in form.username.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </div>  
+    <div>  
+      {{ form.password.label }} {{ form.password() }}
+      {% if form.username.errors %}
+        {% for error in form.username.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </div>  
+    <div>  
+      {{ form.host.label }} {{ form.host() }}
+      {% if form.host.errors %}
+        {% for error in form.host.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </div>  
+    <div>  
+      {{ form.realm.label }} {{ form.realm() }}
+      {% if form.realm.errors %}
+        {% for error in form.realm.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div>
+      <input type="hidden" name="return_url" value="{{ return_url }}">
+      <input type="hidden" name="csrf_token" value="{{ request.session.get_csrf_token() }}">
+      {{ form.login }}
+    </div>
+  </form>
+</body>
+
+</html>
