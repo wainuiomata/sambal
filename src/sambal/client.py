@@ -6,21 +6,8 @@ from samba.param import LoadParm
 from samba.samdb import SamDB
 
 
-def get_samdb(request) -> Optional[SamDB]:
-    """Returns a SamDB connection to be used via the request.samdb property.
-
-    :param request: Pyramid request object
-    :return: SamDB or None if no credentials in session
-    """
-    # Fetch credentials out of the session after user logs in.
-    # For this to be secure the session MUST be a backend session only.
-    host = request.session.get("samba.host")
-    realm = request.session.get("samba.realm")
-    username = request.session.get("samba.username")
-    password = request.session.get("samba.password")
-
-    # The host username and password are required, realm is optional.
-    # Needs to be double-checked if this is correct.
+def connect_samdb(username, password, host, realm=None) -> Optional[SamDB]:
+    """Connect to Samba or Windows host and return SamDB on success."""
     if host and username and password:
         if host.startswith(("ldap://", "ldaps://")):
             url = host
@@ -43,3 +30,19 @@ def get_samdb(request) -> Optional[SamDB]:
             credentials=creds,
             lp=lp,
         )
+
+
+def get_samdb(request) -> Optional[SamDB]:
+    """Returns a SamDB connection to be used via the request.samdb property.
+
+    :param request: Pyramid request object
+    :return: SamDB or None if no credentials in session
+    """
+    # Fetch credentials out of the session after user logs in.
+    # For this to be secure the session MUST be a backend session only.
+    username = request.session.get("samba.username")
+    password = request.session.get("samba.password")
+    host = request.session.get("samba.host")
+    realm = request.session.get("samba.realm")
+
+    return connect_samdb(username, password, host, realm)

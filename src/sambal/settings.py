@@ -4,7 +4,7 @@ import os
 # Pyramid settings are traditionally loaded via PasteDeploy ini file.
 # With this project we went a different way with env vars.
 SETTINGS = {
-    "authn.secret": os.getenv("SAMBAL_SESSION_SECRET"),
+    "sambal.secret": os.getenv("SAMBAL_SESSION_SECRET"),
     "redis.sessions.url": os.getenv("SAMBAL_REDIS_URL"),
     "redis.sessions.secret": os.getenv("SAMBAL_SESSION_SECRET"),
     "redis.sessions.serialize": lambda s: json.dumps(s).encode("utf-8"),
