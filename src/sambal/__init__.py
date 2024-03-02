@@ -1,5 +1,5 @@
 from pyramid.config import Configurator
-from pyramid.csrf import CookieCSRFStoragePolicy
+from pyramid.csrf import SessionCSRFStoragePolicy
 
 from .client import get_samdb
 from .security import SambalSecurityPolicy
@@ -9,7 +9,7 @@ with Configurator(settings=SETTINGS) as config:
     config.include("pyramid_jinja2")
     config.include("sambal.routes")
     config.include("pyramid_session_redis")
-    config.set_csrf_storage_policy(CookieCSRFStoragePolicy())
+    config.set_csrf_storage_policy(SessionCSRFStoragePolicy())
     config.set_default_csrf_options(require_csrf=True)
     config.set_security_policy(SambalSecurityPolicy(SETTINGS["sambal.secret"]))
     config.add_jinja2_search_path("sambal:templates")
