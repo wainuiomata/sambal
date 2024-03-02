@@ -17,6 +17,13 @@ files inside it, it's crude but works.
     . venv/bin/activate
     pip install -e .
 
+Configuring Sambal
+------------------
+
+You will need a Redis server for sessions which must be properly secured.
+See the [Configuration](https://github.com/wainuiomata/sambal/wiki/Configuration)
+page on the Wiki for more details.
+
 Starting Sambal
 ---------------
 
