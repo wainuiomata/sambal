@@ -1,7 +1,6 @@
 from typing import Optional
 
 from pyramid.authentication import AuthTktCookieHelper
-from pyramid.authorization import ACLHelper, Authenticated, Everyone
 from pyramid.interfaces import ISecurityPolicy
 from pyramid.security import forget, remember
 from samba.netcmd.domain.models import User
@@ -25,14 +24,7 @@ class SambalSecurityPolicy:
             return request.samdb.connecting_user_sid
 
     def permits(self, request, context, permission):
-        # Use the identity to build a set of principals.
-        principals = {Everyone}
-        identity = request.identity
-        if identity is not None:
-            principals.add(Authenticated)
-
-        # Pass them to the ACLHelper to determine allowed/denied.
-        return ACLHelper().permits(context, principals, permission)
+        return request.identity is not None
 
     def remember(self, request, userid, **kwargs):
         return self.authtkt.remember(request, userid, **kwargs)
