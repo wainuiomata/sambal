@@ -2,7 +2,6 @@ from pyramid.httpexceptions import HTTPFound
 from pyramid.view import forbidden_view_config, view_config
 
 from sambal.forms import LoginForm
-from sambal.security import login, logout
 
 
 @view_config(route_name="login", renderer="login.jinja2")
@@ -22,7 +21,7 @@ def login_view(request):
             host = form.host.data
             realm = form.realm.data
 
-            if headers := login(request, username, password, host, realm):
+            if headers := request.login(username, password, host, realm):
                 return HTTPFound(location=return_url, headers=headers)
             else:
                 request.session.flash("Login to host failed", queue="error")
@@ -38,6 +37,6 @@ def login_view(request):
 @view_config(route_name="logout")
 def logout_view(request):
     """Logout user."""
-    headers = logout(request)
+    headers = request.logout()
     redirect_url = request.route_url("home")
     return HTTPFound(location=redirect_url, headers=headers)
