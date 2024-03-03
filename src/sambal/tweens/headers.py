@@ -3,7 +3,7 @@ class SecurityHeaders:
 
     def __init__(self, handler, registry):
         self.handler = handler
-        self.registry = registry
+        self.settings = registry.settings
 
     def __call__(self, request):
         response = self.handler(request)
@@ -23,7 +23,8 @@ class SecurityHeaders:
         )
 
         # HSTS is optional and is not automatically turned on if https is on.
-        if self.registry.settings["sambal.hsts"]:
-            response.headers["strict-transport-security"] = "max-age=15768000"
+        # It does not make sense to set this header if https is turned off.
+        if self.settings["sambal.hsts"] and self.settings["sambal.https"]:
+            response.headers["Strict-Transport-Security"] = "max-age=15768000"
 
         return response
