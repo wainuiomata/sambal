@@ -4,6 +4,8 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="description" content="Sambal web admin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login</title>
 </head>
 
@@ -11,7 +13,7 @@
   <h1>Login</h1>
   <form action="{{ request.route_path('login') }}" method="POST">
     <div>  
-      {{ form.username.label }} {{ form.username() }}
+      {{ form.username.label }} {{ form.username(autocomplete="username") }}
       {% if form.username.errors %}
         {% for error in form.username.errors %}
           {{ error }}
@@ -19,7 +21,7 @@
       {% endif %}
     </div>  
     <div>  
-      {{ form.password.label }} {{ form.password() }}
+      {{ form.password.label }} {{ form.password(autocomplete="current-password") }}
       {% if form.username.errors %}
         {% for error in form.username.errors %}
           {{ error }}
