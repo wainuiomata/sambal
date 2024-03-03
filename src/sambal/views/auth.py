@@ -6,7 +6,7 @@ from sambal.forms import LoginForm
 
 @view_config(route_name="login", renderer="login.jinja2")
 @forbidden_view_config(accept="text/html", renderer="login.jinja2")
-def login_view(request):
+def login(request):
     """Login form."""
     # Avoid looping the login page if accessed directly.
     if request.matched_route.name == "login":
@@ -35,7 +35,7 @@ def login_view(request):
 
 
 @view_config(route_name="logout")
-def logout_view(request):
+def logout(request):
     """Logout user."""
     headers = request.logout()
     redirect_url = request.route_url("home")
