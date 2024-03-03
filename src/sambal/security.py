@@ -7,12 +7,16 @@ from samba.netcmd.domain.models import User
 from zope.interface import implementer
 
 from .client import connect_samdb
+from .settings import SETTINGS
 
 
 @implementer(ISecurityPolicy)
 class SambalSecurityPolicy:
     def __init__(self, secret):
-        self.authtkt = AuthTktCookieHelper(secret=secret)
+        self.authtkt = AuthTktCookieHelper(
+            secret=secret,
+            secure=SETTINGS["sambal.https"],
+        )
 
     def identity(self, request) -> Optional[User]:
         object_sid = self.authenticated_userid(request)

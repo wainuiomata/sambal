@@ -7,6 +7,8 @@ class SecurityHeaders:
 
     def __call__(self, request):
         response = self.handler(request)
+
+        # Default set of security headers needs to be really strict.
         response.headers.update(
             {
                 "Content-Security-Policy": "default-src 'self'",
@@ -19,4 +21,9 @@ class SecurityHeaders:
                 "Vary": "Cookie",
             }
         )
+
+        # HSTS is optional and is not automatically turned on if https is on.
+        if self.registry.settings["sambal.hsts"]:
+            response.headers["strict-transport-security"] = "max-age=15768000"
+
         return response
