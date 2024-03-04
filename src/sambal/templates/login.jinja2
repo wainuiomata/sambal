@@ -1,48 +1,33 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="{{ request.locale_name }}">
 
 <head>
+  <title>Sambal Login</title>
   <meta charset="utf-8">
-  <meta name="description" content="Sambal web admin">
+  <meta name="description" content="Sambal admin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
+  <link rel="stylesheet" href="/static/login.css">
 </head>
 
 <body>
-  <h1>Login</h1>
+  <h1>Domain Login</h1>
   <form action="{{ request.route_path('login') }}" method="POST">
-    <div>  
-      {{ form.username.label }} {{ form.username(autocomplete="username") }}
-      {% if form.username.errors %}
-        {% for error in form.username.errors %}
-          {{ error }}
-        {% endfor %}
-      {% endif %}
-    </div>  
-    <div>  
-      {{ form.password.label }} {{ form.password(autocomplete="current-password") }}
-      {% if form.username.errors %}
-        {% for error in form.username.errors %}
-          {{ error }}
-        {% endfor %}
-      {% endif %}
-    </div>  
-    <div>  
-      {{ form.host.label }} {{ form.host() }}
-      {% if form.host.errors %}
-        {% for error in form.host.errors %}
-          {{ error }}
-        {% endfor %}
-      {% endif %}
-    </div>  
-    <div>  
-      {{ form.realm.label }} {{ form.realm() }}
-      {% if form.realm.errors %}
-        {% for error in form.realm.errors %}
-          {{ error }}
-        {% endfor %}
-      {% endif %}
+    <div>
+      {{ form.username.label }}
+      {{ form.username(autocomplete="username", placeholder="Account name") }}
+    </div>
+    <div>
+      {{ form.password.label }}
+      {{ form.password(autocomplete="current-password", placeholder="Password") }}
+    </div>
+    <div>
+      {{ form.host.label }}
+      {{ form.host(placeholder="Host or URL") }}
+    </div>
+    <div>
+      {{ form.realm.label }}
+      {{ form.realm(placeholder="Realm") }}
     </div>
     <div>
       <input type="hidden" name="return_url" value="{{ return_url }}">
