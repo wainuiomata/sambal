@@ -31,6 +31,13 @@ dependencies = [
   "WTForms==3.1.2",
 ]
 
+[project.optional-dependencies]
+test = [
+  "pytest==8.0.2",
+  "pytest-cov==4.1.0",
+  "WebTest==3.0.0",
+]
+
 [project.license]
 text = "GPL-3.0-only"
 
@@ -53,3 +60,7 @@ license-files = [
 
 [tool.distutils.bdist_wheel]
 universal = true
+
+[tool.pytest.ini_options]
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+addopts = "--cov=sambal --cov-branch --cov-report=term --cov-report=html:reports/htmlcov --cov-report=xml:reports/coverage.xml --junitxml=reports/junit.xml"
