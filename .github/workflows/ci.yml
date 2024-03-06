@@ -4,7 +4,7 @@ on: push
 
 jobs:
   lint:
-    name: Lint
+    name: Ruff
     runs-on: ubuntu-latest
 
     steps:
