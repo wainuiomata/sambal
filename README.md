@@ -43,6 +43,20 @@ Then also install gunicorn and run:
     pip install gunicorn
     gunicorn sambal:app -w 4
 
+Running Tests
+-------------
+
+To run the tests first make sure the optional dependency group called `test`
+is installed:
+
+    pip install -e .[test]
+
+Then just run pytest:
+
+    pytest
+
+Coverage reports end up in the `reports` folder.
+
 Why Pyramid
 -----------
 

@@ -3,8 +3,7 @@
 *.pyc
 *~
 .coverage
-coverage.xml
-coverage
+reports/
 build/
 dist/
 venv/
