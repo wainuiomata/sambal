@@ -53,10 +53,6 @@ supports both URL-Dispatch and Traversal.
 In this project we want to investigate using Traversal and mapping
 URL parts to a DN seems to make sense.
 
-We have therefore chosen to use Pyramid over Flask for this particular
-project. As for "why not FastAPI" well Samba isn't exactly async so
-that doesn't sound like the wisest choice.
-
 License
 -------
 
