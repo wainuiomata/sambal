@@ -36,6 +36,7 @@ test = [
   "pytest==8.0.2",
   "pytest-cov==4.1.0",
   "WebTest==3.0.0",
+  "ruff==0.3.0",
 ]
 
 [project.license]
@@ -64,3 +65,35 @@ universal = true
 [tool.pytest.ini_options]
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
 addopts = "--cov=sambal --cov-branch --cov-report=term --cov-report=html:reports/htmlcov --cov-report=xml:reports/coverage.xml --junitxml=reports/junit.xml"
+
+[tool.ruff]
+exclude = [
+    ".coverage",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".ruff_cache",
+    ".tox",
+    ".vscode",
+    "build",
+    "dist",
+    "venv",
+]
+line-length = 88
+indent-width = 4
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+ignore = []
+fixable = ["ALL"]
+unfixable = []
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = false
+docstring-code-line-length = "dynamic"
