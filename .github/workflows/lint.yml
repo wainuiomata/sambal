@@ -1,10 +1,10 @@
-name: CI
+name: lint
 
 on: push
 
 jobs:
   lint:
-    name: Ruff
+    name: ruff
     runs-on: ubuntu-latest
 
     steps:
