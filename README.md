@@ -55,7 +55,7 @@ The tests need a real Redis instance and a Samba host or Active Directory
 domain to connect to as the Administrator or admin user.
 
 WARNING: The tests will be creating users and various other objects
-on the domain, so should never be run again a production server.
+on the domain, so should never be run against a production server.
 
 The Makefile contains the lint and test commands which run pytest and ruff:
 
