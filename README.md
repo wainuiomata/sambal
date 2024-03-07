@@ -51,7 +51,7 @@ is installed:
 
     pip install -e .[test]
 
-The tests need a real Redis instance to and a Samba host or Active Directory
+The tests need a real Redis instance and a Samba host or Active Directory
 domain to connect to as the Administrator or admin user.
 
 WARNING: The tests will be creating users and various other objects
