@@ -51,9 +51,16 @@ is installed:
 
     pip install -e .[test]
 
-Then just run pytest:
+The tests need a real Redis instance to and a Samba host or Active Directory
+domain to connect to as the Administrator or admin user.
 
-    pytest
+WARNING: The tests will be creating users and various other objects
+on the domain, so should never be run again a production server.
+
+The Makefile contains the lint and test commands which run pytest and ruff:
+
+    make lint
+    make test
 
 Coverage reports end up in the `reports` folder.
 
