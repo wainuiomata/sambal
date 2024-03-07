@@ -2,15 +2,18 @@ import pytest
 import webtest
 from pyramid.scripting import prepare
 
+import sambal
+
+
+@pytest.fixture(scope="session")
+def settings():
+    """Fixture that returns the Pyramid settings dict."""
+    return sambal.SETTINGS
+
 
 @pytest.fixture(scope="session")
 def app():
-    """Fixtures that returns the Sambal WSGI app.
-
-    We can inject env vars here if necessary, but only before the import.
-    """
-    import sambal
-
+    """Fixtures that returns the Sambal WSGI app."""
     return sambal.app
 
 
