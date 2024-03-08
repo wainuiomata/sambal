@@ -11,10 +11,10 @@ import sambal
 def settings():
     """Fixture that returns the Pyramid settings dict."""
     test_settings = dict(sambal.SETTINGS)
-    test_settings["samba.host"] = os.getenv("SAMBAL_SAMBA_HOST")
-    test_settings["samba.username"] = os.getenv("SAMBAL_SAMBA_USERNAME")
-    test_settings["samba.password"] = os.getenv("SAMBAL_SAMBA_PASSWORD")
-    test_settings["samba.realm"] = os.getenv("SAMBAL_SAMBA_REALM")
+    test_settings["samba.host"] = os.getenv("SAMBAL_TEST_HOST")
+    test_settings["samba.username"] = os.getenv("SAMBAL_TEST_USERNAME")
+    test_settings["samba.password"] = os.getenv("SAMBAL_TEST_PASSWORD")
+    test_settings["samba.realm"] = os.getenv("SAMBAL_TEST_REALM")
     test_settings["http_host"] = "example.com"
     return test_settings
 
