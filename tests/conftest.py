@@ -15,6 +15,7 @@ def settings():
     test_settings["samba.username"] = os.getenv("SAMBAL_SAMBA_USERNAME")
     test_settings["samba.password"] = os.getenv("SAMBAL_SAMBA_PASSWORD")
     test_settings["samba.realm"] = os.getenv("SAMBAL_SAMBA_REALM")
+    test_settings["http_host"] = "example.com"
     return test_settings
 
 
@@ -25,12 +26,12 @@ def app():
 
 
 @pytest.fixture
-def testapp(app):
+def testapp(app, settings):
     """Fixture that returns a Sambal WebTest app."""
     return webtest.TestApp(
         app,
         extra_environ={
-            "HTTP_HOST": "example.com",
+            "HTTP_HOST": settings["http_host"],
         },
     )
 

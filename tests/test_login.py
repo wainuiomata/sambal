@@ -35,7 +35,8 @@ def test_login_logout(testapp, settings):
     }
 
     response = testapp.post("/login/", login_form, status=302)
-    assert response.headers["location"] == parser.return_url
+    expected_url = "http://" + settings["http_host"] + parser.return_url
+    assert response.headers["location"] == expected_url
 
     response = testapp.get("/", status=200)
     assert "Sambal Login" not in response.text

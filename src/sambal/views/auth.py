@@ -10,9 +10,9 @@ def login(request):
     """Login form."""
     # Avoid looping the login page if accessed directly.
     if request.matched_route.name == "login":
-        return_url = request.route_url("home")
+        return_url = request.route_path("home")
     else:
-        return_url = request.POST.get("return_url", request.url)
+        return_url = request.POST.get("return_url", request.path)
 
     if request.method == "POST":
         if (form := LoginForm(request.POST)) and form.validate():
