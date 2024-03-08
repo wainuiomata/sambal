@@ -1,52 +1,62 @@
 from typing import Optional
 
-from ldb import LdbError
 from samba.auth import system_session
 from samba.credentials import Credentials
 from samba.param import LoadParm
 from samba.samdb import SamDB
 
 
-def connect_samdb(username, password, host, realm=None) -> Optional[SamDB]:
-    """Connect to Samba or Windows host and return SamDB on success."""
-    if host and username and password:
-        if host.startswith(("ldap://", "ldaps://")):
-            url = host
-        else:
-            url = f"ldap://{host}"
+def connect_samdb(host, username, password, realm=None) -> SamDB:
+    """Connect to Samba or Windows host and return SamDB on success.
 
-        lp = LoadParm()
-        lp.load_default()
+    :param host: Host name or URL
+    :param username: Account name
+    :param password: Account password
+    :param realm: Optional realm
+    :raises LdbError: on failure, caller should handle error.
+    """
+    if host.startswith(("ldap://", "ldaps://")):
+        url = host
+    else:
+        url = f"ldap://{host}"
 
-        creds = Credentials()
-        creds.set_username(username)
-        creds.set_password(password)
+    lp = LoadParm()
+    lp.load_default()
 
-        if realm:
-            creds.set_realm(realm)
+    creds = Credentials()
+    creds.set_username(username)
+    creds.set_password(password)
 
-        try:
-            return SamDB(
-                url=url,
-                session_info=system_session(),
-                credentials=creds,
-                lp=lp,
-            )
-        except LdbError:
-            return None
+    if realm:
+        creds.set_realm(realm)
+
+    return SamDB(
+        url=url,
+        session_info=system_session(),
+        credentials=creds,
+        lp=lp,
+    )
 
 
 def get_samdb(request) -> Optional[SamDB]:
     """Returns a SamDB connection to be used via the request.samdb property.
 
+    Fetch credentials out of the session after user has logged in.
+    All keys except for realm must be present.
+
+    For this to be secure the session MUST be a backend session only,
+    with a password on Redis and a unique session secret different to the
+    authtkt cookie secret.
+
     :param request: Pyramid request object
     :return: SamDB or None if no credentials in session
+    :raises LdbError: On connection error or if the credentials no longer work
     """
-    # Fetch credentials out of the session after user logs in.
-    # For this to be secure the session MUST be a backend session only.
-    username = request.session.get("samba.username")
-    password = request.session.get("samba.password")
-    host = request.session.get("samba.host")
-    realm = request.session.get("samba.realm")
-
-    return connect_samdb(username, password, host, realm)
+    try:
+        host = request.session["samba.host"]
+        username = request.session["samba.username"]
+        password = request.session["samba.password"]
+        realm = request.session.get("samba.realm")
+        return connect_samdb(host, username, password, realm)
+    except KeyError:
+        return None
