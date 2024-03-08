@@ -16,6 +16,8 @@ class SambalSecurityPolicy:
         self.authtkt = AuthTktCookieHelper(
             secret=secret,
             secure=SETTINGS["sambal.https"],
+            samesite="Strict",
+            http_only=True,
         )
 
     def identity(self, request) -> Optional[User]:

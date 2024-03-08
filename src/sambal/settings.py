@@ -14,6 +14,7 @@ SETTINGS = {
     "redis.sessions.secret": os.getenv("SAMBAL_SESSION_SECRET"),
     "redis.sessions.serialize": lambda s: json.dumps(s).encode("utf-8"),
     "redis.sessions.deserialize": lambda s: json.loads(s.decode("utf-8")),
+    "redis.sessions.cookie_samesite": "Strict",
     "redis.sessions.cookie_httponly": True,
 }
 
