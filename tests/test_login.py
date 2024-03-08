@@ -46,6 +46,24 @@ def test_login_logout(testapp, settings):
     assert "Sambal Login" in response.text
 
 
+def test_login_invalid_credentials(testapp, settings):
+    response = testapp.get("/login/", status=200)
+    parser = LoginHTMLParser()
+    parser.feed(response.text)
+
+    login_form = {
+        "host": settings["samba.host"],
+        "username": "invalid",
+        "password": "invalid",
+        "realm": settings["samba.realm"],
+        "csrf_token": parser.csrf_token,
+        "return_url": parser.return_url,
+    }
+
+    response = testapp.post("/login/", login_form, status=200)
+    assert "Login to host failed" in response.text
+
+
 def test_login_required(testapp):
     response = testapp.get("/", status=200)
     assert "Sambal Login" in response.text

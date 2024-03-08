@@ -1,5 +1,6 @@
 from typing import Optional
 
+from ldb import LdbError
 from samba.auth import system_session
 from samba.credentials import Credentials
 from samba.param import LoadParm
@@ -24,12 +25,15 @@ def connect_samdb(username, password, host, realm=None) -> Optional[SamDB]:
         if realm:
             creds.set_realm(realm)
 
-        return SamDB(
-            url=url,
-            session_info=system_session(),
-            credentials=creds,
-            lp=lp,
-        )
+        try:
+            return SamDB(
+                url=url,
+                session_info=system_session(),
+                credentials=creds,
+                lp=lp,
+            )
+        except LdbError:
+            return None
 
 
 def get_samdb(request) -> Optional[SamDB]:
