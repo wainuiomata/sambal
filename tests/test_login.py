@@ -20,7 +20,7 @@ class LoginHTMLParser(HTMLParser):
                 self.return_url = tag_attrs["value"]
 
 
-def test_login(testapp, settings):
+def test_login_logout(testapp, settings):
     response = testapp.get("/login/", status=200)
     parser = LoginHTMLParser()
     parser.feed(response.text)
@@ -39,6 +39,10 @@ def test_login(testapp, settings):
 
     response = testapp.get("/", status=200)
     assert "Sambal Login" not in response.text
+
+    testapp.get("/logout/", status=302)
+    response = testapp.get("/", status=200)
+    assert "Sambal Login" in response.text
 
 
 def test_login_required(testapp):
