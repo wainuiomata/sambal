@@ -6,6 +6,14 @@ build :
 lint :
 	@ruff check
 
+.PHONY : lint-fix
+lint-fix :
+	@ruff check --fix
+
+.PHONY : format
+format :
+	@ruff format
+
 .PHONY : test
 test :
 	@pytest
