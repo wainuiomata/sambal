@@ -61,7 +61,7 @@ def test_login_invalid_credentials(testapp, settings):
     }
 
     response = testapp.post("/login/", login_form, status=200)
-    assert "Login to host failed" in response.text
+    assert "Login failed" in response.text
 
 
 def test_login_required(testapp):

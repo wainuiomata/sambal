@@ -1,3 +1,4 @@
+from ldb import LdbError
 from pyramid.httpexceptions import HTTPFound
 from pyramid.view import forbidden_view_config, view_config
 
@@ -21,10 +22,15 @@ def login(request):
             host = form.host.data
             realm = form.realm.data
 
-            if headers := request.login(username, password, host, realm):
-                return HTTPFound(location=return_url, headers=headers)
-            else:
-                request.session.flash("Login to host failed", queue="error")
+            try:
+                if headers := request.login(host, username, password, realm):
+                    return HTTPFound(location=return_url, headers=headers)
+                else:
+                    request.session.flash("Login failed", queue="error")
+
+            except LdbError as e:
+                msg = e.args[1]
+                request.session.flash(f"Login failed: {msg}", queue="error")
     else:
         form = LoginForm()
 
