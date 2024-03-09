@@ -1,6 +1,5 @@
 from typing import Optional
 
-from ldb import LdbError
 from pyramid.authentication import AuthTktCookieHelper
 from pyramid.interfaces import ISecurityPolicy
 from pyramid.security import forget, remember
@@ -40,18 +39,19 @@ class SambalSecurityPolicy:
         return self.authtkt.forget(request, **kwargs)
 
 
-def login(request, username, password, host, realm):
-    """Log into server and put credentials in session on success only."""
-    try:
-        samdb = connect_samdb(host, username, password, realm)
-        if user_sid := samdb.connecting_user_sid:
-            request.session["samba.username"] = username
-            request.session["samba.password"] = password
-            request.session["samba.host"] = host
-            request.session["samba.realm"] = realm
-            return remember(request, user_sid)
-    except LdbError:
-        pass
+def login(request, host, username, password, realm):
+    """Log into server and put credentials in session on success only.
+
+    :raises LdbError: If the login failed or host is incorrect
+    """
+    samdb = connect_samdb(host, username, password, realm)
+
+    if user_sid := samdb.connecting_user_sid:
+        request.session["samba.username"] = username
+        request.session["samba.password"] = password
+        request.session["samba.host"] = host
+        request.session["samba.realm"] = realm
+        return remember(request, user_sid)
 
 
 def logout(request):
