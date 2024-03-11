@@ -67,8 +67,3 @@ def logout(request):
         del request.session["samba.realm"]
 
     return forget(request)
-
-
-def groupfinder(username, request):
-    """Callback that returns a list of group names for the current user."""
-    return []
