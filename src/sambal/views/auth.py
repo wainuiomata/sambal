@@ -31,7 +31,7 @@ def login(request):
         # Avoid looping the login page if accessed directly.
         # Also, as the app uses traversal request.matched_route can be None.
         if request.matched_route and request.matched_route.name == "login":
-            return_url = request.route_path("home")
+            return_url = "/"
         else:
             return_url = request.path
 
@@ -47,5 +47,5 @@ def login(request):
 def logout(request):
     """Logout user."""
     headers = request.logout()
-    redirect_url = request.route_url("home")
+    redirect_url = "/"
     return HTTPFound(location=redirect_url, headers=headers)
