@@ -11,7 +11,7 @@ with Configurator(settings=SETTINGS) as config:
     config.include("pyramid_session_redis")
     config.set_csrf_storage_policy(SessionCSRFStoragePolicy())
     config.set_default_csrf_options(require_csrf=True)
-    config.set_security_policy(SambalSecurityPolicy(SETTINGS["auth.secret"]))
+    config.set_security_policy(SambalSecurityPolicy(SETTINGS))
     config.add_tween("sambal.tweens.SecurityHeaders")
     config.add_jinja2_search_path("sambal:templates")
     config.add_request_method(get_samdb, "samdb", property=True, reify=True)

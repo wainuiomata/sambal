@@ -7,15 +7,14 @@ from samba.netcmd.domain.models import User
 from zope.interface import implementer
 
 from .client import connect_samdb
-from .settings import USE_HTTPS
 
 
 @implementer(ISecurityPolicy)
 class SambalSecurityPolicy:
-    def __init__(self, secret):
+    def __init__(self, settings):
         self.authtkt = AuthTktCookieHelper(
-            secret=secret,
-            secure=USE_HTTPS,
+            secret=settings["auth.secret"],
+            secure=settings["sambal.https"],
             samesite="Strict",
             http_only=True,
         )
