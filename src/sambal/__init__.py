@@ -7,6 +7,7 @@ from .settings import SETTINGS
 
 with Configurator(settings=SETTINGS) as config:
     config.include("pyramid_jinja2")
+    config.include("sambal.renderers")
     config.include("sambal.routes")
     config.include("pyramid_session_redis")
     config.set_csrf_storage_policy(SessionCSRFStoragePolicy())
