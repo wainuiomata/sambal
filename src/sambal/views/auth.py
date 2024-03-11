@@ -10,10 +10,13 @@ from sambal.forms import LoginForm
 def login(request):
     """Login form."""
     # Avoid looping the login page if accessed directly.
-    if request.matched_route.name == "login":
+    # Because the app also uses traversal request.matched_route can be None.
+    if request.method == "POST":
+        return_url = request.POST.get("return_url", request.path)
+    elif request.matched_route and request.matched_route.name == "login":
         return_url = request.route_path("home")
     else:
-        return_url = request.POST.get("return_url", request.path)
+        return_url = request.path
 
     if request.method == "POST":
         if (form := LoginForm(request.POST)) and form.validate():
