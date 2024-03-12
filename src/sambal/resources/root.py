@@ -9,7 +9,11 @@ class RootFactory(dict):
 
     def __init__(self, request):
         if request.samdb:
-            qs = self.model.query(request.samdb, scope=SCOPE_ONELEVEL)
+            qs = self.model.query(
+                request.samdb,
+                base_dn=request.samdb.get_root_basedn(),
+                scope=SCOPE_ONELEVEL,
+            )
             data = {obj.name: Resource(request, obj) for obj in qs if obj}
         else:
             data = {}
