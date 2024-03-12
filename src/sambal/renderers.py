@@ -10,7 +10,7 @@ from samba.dcerpc.security import descriptor
 
 def includeme(config):
     """Configure the builtin json renderer to handle more data types."""
-    json_renderer = JSON()
+    json_renderer = JSON(indent=2, sort_keys=True)
     json_renderer.add_adapter(datetime, datetime_adapter)
     json_renderer.add_adapter(Decimal, decimal_adapter)
     json_renderer.add_adapter(Dn, dn_adapter)
