@@ -1,7 +1,7 @@
 from ldb import SCOPE_ONELEVEL
 from samba.netcmd.domain.models import Model
 
-from .base import Resource
+from .resource import Resource
 
 
 class RootFactory(dict):
