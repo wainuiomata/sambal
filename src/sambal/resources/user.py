@@ -1,6 +1,6 @@
 from samba.netcmd.domain.models import User
 
-from .base import Resource
+from .resource import Resource
 
 
 class UserResource(Resource):
