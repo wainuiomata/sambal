@@ -3,7 +3,7 @@ from typing import Optional
 from pyramid.authentication import AuthTktCookieHelper
 from pyramid.interfaces import ISecurityPolicy
 from pyramid.security import forget, remember
-from samba.netcmd.domain.models import User
+from samba.domain.models import User
 from zope.interface import implementer
 
 from .client import connect_samdb
