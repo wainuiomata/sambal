@@ -18,5 +18,6 @@ with Configurator(settings=SETTINGS) as config:
     config.add_request_method(get_samdb, "samdb", property=True, reify=True)
     config.add_request_method(login, "login")
     config.add_request_method(logout, "logout")
+    config.scan("sambal.resources")
     config.scan("sambal.views")
     app = config.make_wsgi_app()
