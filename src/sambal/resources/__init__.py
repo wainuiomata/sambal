@@ -1,4 +1,4 @@
-from .base import Resource
+from .resource import Resource
 from .root import RootFactory
 from .user import UserResource
 
