@@ -1,4 +1,4 @@
-from samba.netcmd.domain.models import User
+from samba.domain.models import User
 
 from .resource import Resource
 

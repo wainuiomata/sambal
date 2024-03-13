@@ -1,5 +1,5 @@
 from ldb import SCOPE_ONELEVEL
-from samba.netcmd.domain.models import Model
+from samba.domain.models import Model
 
 from .resource import Resource
 
