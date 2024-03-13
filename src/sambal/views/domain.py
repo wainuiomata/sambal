@@ -5,11 +5,7 @@ from sambal.resources import Resource, RootFactory
 
 @view_config(context=RootFactory, permission="read", renderer="json")
 def root_view(context, request):
-    """View for the root node (RootFactory).
-
-    This is the view for "/" or home. Only show toplevel keys, or it just
-    ends up showing everything.
-    """
+    """View for the root node (RootFactory)."""
     return {field: resource for field, resource in context.items()}
 
 
