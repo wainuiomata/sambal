@@ -10,7 +10,7 @@ def root_view(context, request):
     This is the view for "/" or home. Only show toplevel keys, or it just
     ends up showing everything.
     """
-    return {field: list(resource.keys()) for field, resource in context.items()}
+    return {field: resource for field, resource in context.items()}
 
 
 @view_config(context=Resource, permission="read", renderer="json")
