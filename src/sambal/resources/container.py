@@ -18,8 +18,7 @@ class ContainerResource(Resource):
                 polymorphic=True,
             )
 
-            self["children"] = []
             for obj in queryset:
                 if obj:
                     resource_class = self.resource_for_model(obj)
-                    self["children"].append(resource_class(request, obj))
+                    self[obj.name] = resource_class(request, obj)
