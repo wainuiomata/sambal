@@ -29,7 +29,11 @@ Starting Sambal
 
 To start a development server just run:
 
-    python3 -m sambal
+    sambal
+
+or running as a module does the same:
+
+    python -m sambal
 
 The web interface can then be accessed at http://localhost:8000
 
