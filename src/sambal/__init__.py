@@ -1,11 +1,21 @@
+from logging import getLogger
+from logging.config import dictConfig
+
 from pyramid.config import Configurator
 from pyramid.csrf import SessionCSRFStoragePolicy
 
 from .client import get_samdb
 from .security import SambalSecurityPolicy, login, logout
-from .settings import SETTINGS
+from .settings import LOGGING, SETTINGS
 
+# Set up the logger as early as possibly.
+dictConfig(LOGGING)
+
+logger = getLogger(__name__)
+
+# Create and return a wsgi app.
 with Configurator(settings=SETTINGS) as config:
+    logger.debug("Starting sambal")
     config.include("pyramid_jinja2")
     config.include("sambal.template")
     config.include("sambal.renderers")
