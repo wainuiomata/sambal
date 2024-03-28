@@ -7,7 +7,7 @@ domains using Pyramid.
 At this point it is more just a proof of concept.
 
 It requires the latest version of Samba master compiled from source,
-because the Samba models haven't yet made it into a release.
+or Samba 4.21 when released.
 
 At this point I just create a virtualenv and copy the compiled Samba
 files inside it, it's crude but works.
