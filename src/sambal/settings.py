@@ -44,3 +44,32 @@ SETTINGS = {
     "redis.sessions.cookie_httponly": True,
     "redis.sessions.cookie_secure": USE_HTTPS,
 }
+
+# Logging config.
+# https://docs.python.org/3/library/logging.config.html#logging.config.dictConfig
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": True,
+    "formatters": {
+        "standard": {"format": "%(asctime)s [%(levelname)s] %(name)s: %(message)s"},
+    },
+    "handlers": {
+        "default": {
+            "formatter": "standard",
+            "class": "logging.StreamHandler",
+            "stream": "ext://sys.stdout",
+        },
+    },
+    "loggers": {
+        "": {
+            "handlers": ["default"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "sambal": {
+            "handlers": ["default"],
+            "level": "DEBUG" if DEBUG else "INFO",
+            "propagate": False,
+        },
+    },
+}
