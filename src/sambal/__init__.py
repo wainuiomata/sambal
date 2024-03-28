@@ -8,7 +8,7 @@ from .client import get_samdb
 from .security import SambalSecurityPolicy, login, logout
 from .settings import LOGGING, SETTINGS
 
-# Set up the logger as early as possibly.
+# Set up the logger as early as possible.
 dictConfig(LOGGING)
 
 logger = getLogger(__name__)
