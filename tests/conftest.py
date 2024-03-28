@@ -10,12 +10,19 @@ import sambal
 @pytest.fixture(scope="session")
 def settings():
     """Fixture that returns the Pyramid settings dict."""
+    # Take a copy before adding keys.
     test_settings = dict(sambal.SETTINGS)
     test_settings["samba.host"] = os.getenv("SAMBAL_TEST_HOST")
     test_settings["samba.username"] = os.getenv("SAMBAL_TEST_USERNAME")
     test_settings["samba.password"] = os.getenv("SAMBAL_TEST_PASSWORD")
     test_settings["samba.realm"] = os.getenv("SAMBAL_TEST_REALM")
     test_settings["http_host"] = "example.com"
+
+    # Verify that all env vars are present before starting.
+    assert test_settings["samba.host"] is not None
+    assert test_settings["samba.username"] is not None
+    assert test_settings["samba.password"] is not None
+    assert test_settings["samba.realm"] is not None
     return test_settings
 
 
