@@ -66,6 +66,8 @@ The Makefile contains the lint and test commands which run pytest and ruff:
     make lint
     make test
 
+To autoformat the code using ruff and fix linting errors use `make format`.
+
 Coverage reports end up in the `reports` folder.
 
 Why Pyramid
