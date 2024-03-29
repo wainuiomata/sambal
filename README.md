@@ -29,11 +29,11 @@ Starting Sambal
 
 To start a development server just run:
 
-    sambal
-
-or running as a module does the same:
-
     python -m sambal
+
+Or use the entrypoint installed into the virtualenv:
+
+    sambal
 
 The web interface can then be accessed at http://localhost:8000
 
