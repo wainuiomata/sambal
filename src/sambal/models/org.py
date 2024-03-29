@@ -1,12 +1,20 @@
-from samba.domain import models
-from samba.domain.models.fields import IntegerField
+from samba.domain.models.fields import IntegerField, StringField
+from samba.domain.models import Model
 
 
-class OrganizationalUnit(models.OrganizationalUnit):
-    """OrganizationalUnit contains additional fields not in Samba yet.
+class OrganizationalUnit(Model):
+    """OrganizationalUnit container model.
 
-    This is an example where the original Samba model can be overridden.
-    The resource must be set up to use this model over the Samba one.
+    This model exists in upstream Samba but many of the fields are missing.
+    The model is declared again here which overrides the original.
     """
 
+    ou = StringField("ou")
     country_code = IntegerField("countryCode")
+
+    def __str__(self):
+        return str(self.ou)
+
+    @staticmethod
+    def get_object_class():
+        return "organizationalUnit"
