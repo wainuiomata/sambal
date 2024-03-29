@@ -5,6 +5,8 @@ from pyramid.settings import asbool
 from redis.connection import parse_url
 
 # Read environment variables then do some sanity checks.
+HOST = os.getenv("SAMBAL_HOST", default="127.0.0.1")
+PORT = int(os.getenv("SAMBAL_PORT", default=8000))
 DEBUG = asbool(os.getenv("SAMBAL_DEBUG", default=False))
 USE_HTTPS = asbool(os.getenv("SAMBAL_HTTPS", default=False))
 USE_HSTS = asbool(os.getenv("SAMBAL_HSTS", default=False))
@@ -32,6 +34,8 @@ if SESSION_SECRET == AUTH_SECRET:
 # Pyramid settings are traditionally loaded via PasteDeploy ini file.
 # With this project we went a different way with env vars.
 SETTINGS = {
+    "sambal.host": HOST,
+    "sambal.port": PORT,
     "sambal.debug": DEBUG,
     "sambal.https": USE_HTTPS,
     "sambal.hsts": USE_HSTS,

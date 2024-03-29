@@ -1,5 +1,5 @@
 from waitress import serve
 
-from . import app
+from . import app, SETTINGS
 
-serve(app, host="127.0.0.1", port=8000)
+serve(app, host=SETTINGS["sambal.host"], port=SETTINGS["sambal.port"])
