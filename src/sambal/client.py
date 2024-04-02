@@ -24,6 +24,7 @@ def connect_samdb(host, username, password, realm=None) -> SamDB:
     lp.load_default()
 
     creds = Credentials()
+    creds.guess(lp)
     creds.set_username(username)
     creds.set_password(password)
 
