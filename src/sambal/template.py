@@ -43,7 +43,7 @@ class JSONEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, (Decimal, Dn, MessageElement)):
             return str(obj)
-        if isinstance(obj, Result):
+        elif isinstance(obj, Result):
             return obj.msgs
         elif isinstance(obj, Enum):
             return str(obj.value)
