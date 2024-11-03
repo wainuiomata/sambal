@@ -13,9 +13,11 @@ At this point I just create a virtualenv and copy the compiled Samba
 files inside it, it's crude but works.
 
     python3 -m venv venv
-    cp -R samba/bin/python/* venv/site-packages/
+    cp -R samba/bin/python/* venv/lib/python3.12/site-packages/
     . venv/bin/activate
     pip install -e .
+
+Make sure you change the python version in the path to match your system.
 
 Configuring Sambal
 ------------------
