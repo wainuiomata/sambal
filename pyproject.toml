@@ -35,7 +35,7 @@ dependencies = [
 test = [
   "pytest==8.3.4",
   "pytest-cov==6.0.0",
-  "WebTest==3.0.2",
+  "WebTest==3.0.3",
   "ruff==0.9.3",
 ]
 
