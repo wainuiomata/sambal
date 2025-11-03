@@ -25,7 +25,7 @@ classifiers = [
 dependencies = [
   "pyramid==2.0.2",
   "pyramid_jinja2==2.10.1",
-  "pyramid_session_redis==1.8.0",
+  "pyramid_session_redis==1.8.1",
   "redis==7.0.1",
   "waitress==3.0.2",
   "WTForms==3.2.1",
