@@ -36,7 +36,7 @@ test = [
   "pytest==8.4.2",
   "pytest-cov==7.0.0",
   "WebTest==3.0.7",
-  "ruff==0.14.7",
+  "ruff==0.14.8",
 ]
 
 [project.license]
