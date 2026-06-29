@@ -28,7 +28,7 @@ dependencies = [
   "pyramid_session_redis==1.8.1",
   "redis==7.1.0",
   "waitress==3.0.2",
-  "WTForms==3.2.1",
+  "WTForms==3.2.2",
 ]
 
 [project.optional-dependencies]
