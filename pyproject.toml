@@ -23,7 +23,7 @@ classifiers = [
   "Topic :: Networking",
 ]
 dependencies = [
-  "pyramid==2.0.2",
+  "pyramid==2.1",
   "pyramid_jinja2==2.10.1",
   "pyramid_session_redis==1.8.1",
   "redis==8.0.1",
